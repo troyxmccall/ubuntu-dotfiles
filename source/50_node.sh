@@ -1,3 +1,5 @@
+[[ "$1" != init && ! -e ~/.nave ]] && return 1
+
 export PATH
 PATH=~/.nave/installed/default/bin:"$(path_remove ~/.nave/installed/*/bin)"
 
@@ -26,14 +28,25 @@ function nave_install() {
 
 # Global npm modules to install.
 npm_globals=(
-  bower
-  ember-cli
+  babel-cli
+  eslint
   grunt-cli
-  grunt-init
-  linken
   node-inspector
-  yo
+  pushstate-server
+  webpack
 )
+
+# Because "rm -rf node_modules && npm install" takes WAY too long. Not sure
+# if this really works as well, though. We'll see.
+alias npm_up='npm prune && npm install && npm update'
+
+# Run arbitrary command with npm "bin" directory in PATH.
+function npm_run() {
+  git rev-parse 2>/dev/null && (
+    PATH="$(git rev-parse --show-toplevel)/node_modules/.bin:$PATH"
+    "$@"
+  )
+}
 
 # Update npm and install global modules.
 function npm_install() {
@@ -115,5 +128,15 @@ function npm_latest() {
     return 99
   else
     echo -e '\nAll dependencies are @latest version.'
+  fi
+}
+
+# Force npm to rewrite package.json to sort everything in the default order
+function npm-package() {
+  if [[ "$(cat package.json | grep dependencies)" ]]; then
+    npm install foo --save && npm uninstall foo --save
+  fi
+  if [[ "$(cat package.json | grep devDependencies)" ]]; then
+    npm install foo --save-dev && npm uninstall foo --save-dev
   fi
 }

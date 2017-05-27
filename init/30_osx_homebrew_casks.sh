@@ -21,14 +21,18 @@ casks=(
   # Applications
   1password
   a-better-finder-rename
-  aluxian-messenger
+  awscli
   battle-net
   bettertouchtool
   charles
   chromium
   chronosync
+  controllermate
+  coreutils
+  docker
+  docker-machine
+  docker-compose
   dropbox
-  duet
   easysimbl
   fastscripts
   firefox
@@ -41,6 +45,7 @@ casks=(
   launchbar
   macvim
   menumeters
+  messenger-for-desktop
   midi-monitor
   moom
   omnidisksweeper
@@ -49,9 +54,9 @@ casks=(
   remote-desktop-connection
   scroll-reverser
   seil
-  sharemouse
   skype
   slack
+  smoothmouse
   sonos
   sourcetree
   spotify
@@ -65,12 +70,14 @@ casks=(
   totalfinder
   tower
   transmission-remote-gui
+  tunnelblick
   vagrant
   virtualbox
   vlc
+  yacreader
   ynab
   # Drivers
-  d235j-xbox360-controller-driver
+  xbox360-controller-driver
   # Quick Look plugins
   betterzipql
   qlcolorcode
